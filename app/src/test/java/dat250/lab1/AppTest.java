@@ -7,8 +7,33 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+    @Test
+    void testConvertInchesToMeters() {
+        double result = App.convert(36, "in", "m");
+        assertEquals(0.9144, result, 0.001);
+    }
+
+    @Test
+    void testConvertMetersToFeet() {
+        double result = App.convert(2.5, "m", "ft");
+        assertEquals(8.2021, result, 0.001);
+    }
+
+    @Test
+    void testConvertMilesToMeters() {
+        double result = App.convert(5, "mi", "m");
+        assertEquals(8046.72, result, 0.001);
+    }
+
+    @Test
+    void testConvertFeetToInches() {
+        double result = App.convert(10, "ft", "in");
+        assertEquals(120, result, 0.001);
+    }
+
+    @Test
+    void testConvertInvalidUnits() {
+        double result = App.convert(10, "invalid", "in");
+        assertTrue(Double.isNaN(result));
     }
 }
